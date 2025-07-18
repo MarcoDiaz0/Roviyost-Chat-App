@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../Store/Auth";
 import type { LoginFormData } from "../../../types";
@@ -13,16 +13,20 @@ import ForgetModal from "../../Layouts/ForgetModal";
 import Button from "../../Common/Button";
 
 const Login = () => {
-  const { login, isLoggingIn, error } = useAuthStore();
+  const { login, isLoggingIn, error, setError } = useAuthStore();
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
   });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     login(formData);
   };
+  useEffect(() => {
+    setError();
+  }, []);
   return (
     <div className=" grid grid-cols-2 min-h-[88vh]">
       {/* Left Side */}

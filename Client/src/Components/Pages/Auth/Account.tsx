@@ -2,10 +2,9 @@ import { MdCameraAlt, MdCheck, MdEdit, MdPerson } from "react-icons/md";
 import { useAuthStore } from "../../Store/Auth";
 import Button from "../../Common/Button";
 import { useState } from "react";
-// import Input from "../../Common/Input";
 import type { profileData } from "../../../types";
 import FileButton from "../../Common/FileButton";
-
+//Todo Change Password ,Member Since
 const Account = () => {
   const { authUser, updateProfile, isUpdatingProfile } = useAuthStore();
   const btn = " btn btn-primary";
@@ -64,9 +63,9 @@ const Account = () => {
     });
   };
   return (
-    <article className="flex flex-col items-center justify-center">
+    <article className="flex flex-col overflow-scroll items-center justify-center">
       <h1 className="text-5xl m-4">Account Managment</h1>
-      <aside className="lg:w-2/3 p-2 grid grid-cols-4 border   ">
+      <aside className="lg:w-2/3 p-2 grid grid-cols-4 border ">
         <section className=" flex flex-col ">
           <div className="flex flex-col items-center w-full py-3">
             {authUser?.profilePicture ? (
@@ -238,7 +237,7 @@ const Account = () => {
             </div>
           )}
           {part == "Themes" && (
-            <div className="grid grid-cols-4 p-2">
+            <div className="grid grid-cols-4   p-2">
               {themes.map((theme) => (
                 <button
                   key={theme}

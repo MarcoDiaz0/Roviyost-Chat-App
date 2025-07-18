@@ -22,6 +22,7 @@ export type AuthStore = {
   updateProfile: (data: profileData) => Promise<void>;
   OTPConfirmation: (OTPcode: number, email: string) => Promise<void>;
   login: (data: LoginFormData) => Promise<void>;
+  setError: () => void;
   logout: () => void;
   recover: (email: string) => void;
   connect: () => void;

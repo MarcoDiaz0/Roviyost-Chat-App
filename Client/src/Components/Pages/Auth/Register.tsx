@@ -1,6 +1,6 @@
 import { useAuthStore } from "../../Store/Auth";
 import Input from "../../Common/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { RegisterFormData } from "../../../types";
 import { MdOutlinePassword, MdMail, MdImage } from "react-icons/md";
 import { RiIdCardLine } from "react-icons/ri";
@@ -14,7 +14,7 @@ import OTPModal from "../../Layouts/OTPModal";
 import Button from "../../Common/Button";
 
 const Register = () => {
-  const { isRegistering, register, error } = useAuthStore();
+  const { isRegistering, register, error, setError } = useAuthStore();
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState<RegisterFormData>({
     username: "",
@@ -27,7 +27,9 @@ const Register = () => {
     const success = await register(formData);
     if (success) setModalState(true);
   };
-
+  useEffect(() => {
+    setError();
+  }, []);
   return (
     <div className=" grid grid-cols-2 ">
       {/* left Side  */}

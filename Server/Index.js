@@ -17,7 +17,7 @@ app.use(e.json());
 app.use(cookieParser());
 app.use(fileUpload());
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: "http://localhost:5173",
   credentials: true, // Allow cookies to be sent
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
