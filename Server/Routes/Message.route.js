@@ -9,8 +9,10 @@ import {
 
 const MessageRouter = e.Router();
 
-MessageRouter.get("/users", protectRoute, GetUsers);
-MessageRouter.post("/send/:id", protectRoute, SendMessages);
-MessageRouter.get("/message/:id", protectRoute, GetMessages); // تم تعديل هذا
+MessageRouter
+  .get("/users", protectRoute, GetUsers)
+  .get("/message/:id", protectRoute, GetMessages)
+  .post("/send/:id", protectRoute, SendMessages);
+ // تم تعديل هذا
 
 export default MessageRouter;
