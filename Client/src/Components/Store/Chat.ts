@@ -31,7 +31,7 @@ export const useChatStore = create<MessagesStore>((set, get) => ({
   getMessages: async (id) => {
     set({ IsMessagesLoading: true });
     try {
-      const res = await instance.get(`/messages/${id}`);
+      const res = await instance.get(`/messages/message/${id}`);
       set({ Messages: res.data });
     } catch (error: unknown) {
       const axiosError = error as AxiosError<{ error: string }>;
