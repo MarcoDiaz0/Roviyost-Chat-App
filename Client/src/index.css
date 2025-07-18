@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+
+@plugin "daisyui" {
+  themes: 
+    light --default, 
+    dark --prefersdark,  
+    bumblebee, 
+    emerald, 
+    corporate, 
+    synthwave, 
+    retro, 
+    cyberpunk, 
+    valentine, 
+    halloween, 
+    garden, 
+    forest, 
+    aqua, 
+    lofi, 
+    pastel, 
+    fantasy, 
+    wireframe, 
+    black, 
+    luxury, 
+    dracula, 
+    cmyk, 
+    autumn, 
+    business, 
+    acid, 
+    lemonade, 
+    night, 
+    coffee, 
+    winter;
+}
+/* @plugin "daisyui" {
+  themes: all;
+} */
+
+@theme {
+  /* --color-prime: oklch(77.7% 0.152 181.912);
+  --color-second: oklch(59.1% 0.293 322.896);
+  --color-lightPrime: oklch(91% 0.096 180.426);
+  --color-light: rgb(255, 255, 255);
+  --color-dark: rgb(0, 0, 0); */
+  --color-error:oklch(80.8% 0.114 19.571)
+}
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-animate {
+  animation: fadeInUp 0.4s ease-out;
+}
