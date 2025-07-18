@@ -6,13 +6,13 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import { app, server } from "./Utils/socket.js";
-
+import path from "path";
 //! Routes
 import AuthRouter from "./Routes/Auth.route.js";
 import MessageRouter from "./Routes/Message.route.js";
 
+const __dirname = path.resolve();
 dotenv.config();
-app
 app.use(e.json());
 app.use(cookieParser());
 app.use(fileUpload());
@@ -27,6 +27,13 @@ const port = process.env.PORT || 3000;
 // Sample route
 app.use("/api/auth", AuthRouter);
 app.use("/api/messages", MessageRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(e.static(path.join(__dirname, "../Client/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../Client", "dist", "index.html"));
+  });
+}
 
 server.listen(port, () => {
   connectMongoDB();
