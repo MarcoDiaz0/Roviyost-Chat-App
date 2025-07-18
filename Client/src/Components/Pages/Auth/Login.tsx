@@ -16,8 +16,8 @@ const Login = () => {
   const { login, isLoggingIn, error } = useAuthStore();
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState<LoginFormData>({
-    email: "marco1@gmail.com",
-    password: "marco123",
+    email: "",
+    password: "",
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

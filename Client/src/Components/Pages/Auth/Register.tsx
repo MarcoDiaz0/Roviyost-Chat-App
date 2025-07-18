@@ -17,10 +17,10 @@ const Register = () => {
   const { isRegistering, register, error } = useAuthStore();
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState<RegisterFormData>({
-    username: "marco",
-    email: "marco1@gmail.com",
-    password: "marco123",
-    confirmPassword: "marco123",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
