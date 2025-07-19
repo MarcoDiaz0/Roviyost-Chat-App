@@ -29,10 +29,11 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/messages", MessageRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(e.static(path.join(__dirname, "Client/dist")));
-  app.get("", (req, res) => {
-    res.sendFile(path.join(__dirname, "Client", "dist", "index.html"));
-  });
+ app.use(express.static(path.join(__dirname, "../Client/dist")));
+
+ app.get("*", (req, res) => {
+   res.sendFile(path.join(__dirname, "../Client/dist/index.html"));
+ });
 }
 
 server.listen(port, () => {

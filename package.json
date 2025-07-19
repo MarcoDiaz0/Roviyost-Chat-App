@@ -5,9 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon Server/Index.js",
-    "build":"npm i && npm install --prefix Client && npm run build --prefix Client",
-    "start":" node Server/Index.js"
-
+    "build": "npm i && npm install --prefix Client && npm run build --prefix Client",
+    "start": " node Server/Index.js"
   },
   "type": "module",
   "author": "",
@@ -29,6 +28,8 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.7.0",
     "nodemon": "^3.1.10"
   }
 }
