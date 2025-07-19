@@ -1,5 +1,5 @@
 //! packages
-import e from "express";
+import express from "express";
 import { connectMongoDB } from "./Configs/database.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -8,41 +8,35 @@ import fileUpload from "express-fileupload";
 import { app, server } from "./Utils/socket.js";
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
 
 //! Routes
 import AuthRouter from "./Routes/Auth.route.js";
 import MessageRouter from "./Routes/Message.route.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 dotenv.config();
-app.use(e.json());
+const port = process.env.PORT || 3000;
+const __dirname = path.resolve();
+app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
-const corsOptions = {
-  origin: "http://localhost:5173",
-  credentials: true, // Allow cookies to be sent
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-app.use(cors(corsOptions));
-const port = process.env.PORT || 3000;
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // Sample route
 app.use("/api/auth", AuthRouter);
 app.use("/api/messages", MessageRouter);
 
 if (process.env.NODE_ENV === "production") {
-  const distPath = path.join(__dirname, "../Client/dist");
+  app.use(express.static(path.join(__dirname, "./Client/dist")));
 
-  if (!fs.existsSync(distPath)) {
-    console.error("Client/dist folder not found!");
-  } else {
-    app.use(e.static(distPath));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
-    });
-  }
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./Client", "dist", "index.html"));
+  });
 }
 
 server.listen(port, () => {
