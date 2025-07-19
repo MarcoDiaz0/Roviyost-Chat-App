@@ -7,11 +7,15 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import { app, server } from "./Utils/socket.js";
 import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
 //! Routes
 import AuthRouter from "./Routes/Auth.route.js";
 import MessageRouter from "./Routes/Message.route.js";
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 dotenv.config();
 app.use(e.json());
 app.use(cookieParser());
@@ -29,6 +33,7 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/messages", MessageRouter);
 
 if (process.env.NODE_ENV === "production") {
+  
  app.use(e.static(path.join(__dirname, "../Client/dist")));
 
  if (!fs.existsSync(distPath)) {
