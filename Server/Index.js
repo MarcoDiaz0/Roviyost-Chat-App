@@ -33,18 +33,16 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/messages", MessageRouter);
 
 if (process.env.NODE_ENV === "production") {
-  
- app.use(e.static(path.join(__dirname, "../Client/dist")));
+  const distPath = path.join(__dirname, "../Client/dist");
 
- if (!fs.existsSync(distPath)) {
-   console.error("Client/dist folder not found!");
- } else {
-   app.use(e.static(distPath));
-   app.get("*", (req, res) => {
-     res.sendFile(path.join(distPath, "index.html"));
-   });
- }
-
+  if (!fs.existsSync(distPath)) {
+    console.error("Client/dist folder not found!");
+  } else {
+    app.use(e.static(distPath));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(distPath, "index.html"));
+    });
+  }
 }
 
 server.listen(port, () => {
